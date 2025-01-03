@@ -43,10 +43,8 @@ Scopes allow grouping routes that can share common middleware.
 Syntax:
 
 ```javascript
-scope(
-  "scopeName",
-  () => {
-    YOUR_ROUTES_HERE;
+scope("scopeName", () => {
+    // PLACE YOUR ROUTES HERE;
   },
   { withMiddlewares: [middleware1, middleware2] }
 );
@@ -63,9 +61,7 @@ const apiScopeMiddlewares = [authenticate, logRequest];
 const adminScopeMiddlewares = [authenticate];
 
 // Apply middleware to all routes within scope
-scope(
-  "admin",
-  () => {
+scope("admin", () => {
     // These routes will require authentication
     get("/users", "users#index");
     post("/users", "users#create");
@@ -78,9 +74,7 @@ scope(
   { withMiddlewares: adminScopeMiddlewares }
 );
 
-scope(
-  "api",
-  () => {
+scope("api", () => {
     get("/stats", "stats#index");
     get("/health", "health#check");
   },
