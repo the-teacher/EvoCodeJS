@@ -16,65 +16,70 @@ This project outlines the structure of the anticipated Node.js application along
 ### Project Structure
 
 ```bash
-/app
-├── /src
-│   ├── /types                         # TypeScript types
-│   │   └── TYPES.md                   # Documentation for TypeScript types
-│   ├── /actions                       # Logic for handling HTTP requests (previously controllers)
-│   │   ├── ACTIONS.md                 # Documentation for actions
-│   │   ├── /tests                     # Tests for actions
-│   │   ├── /users                     # User-specific actions
-│   │   │   ├── indexAction.js         # Action for listing users
-│   │   │   ├── createAction.js        # Action for creating a user
-│   │   ├── postAction.js              # Action for handling posts
-│   │   └── authAction.js              # Action for authentication
-│   ├── /dataAccess                    # Data access layer, includes repositories and validations
-│   │   ├── DATA_ACCESS.md             # Documentation for the data access layer
-│   │   ├── /repositories              # Repositories for database interaction
-│   │   │   ├── userRepository.js      # Repository for user data
-│   │   │   ├── postRepository.js      # Repository for post data
-│   │   │   └── authRepository.js      # Repository for auth data
-│   │   ├── /validations               # Validation logic for each data model
-│   │       ├── /tests                 # Tests for validations
-│   │       ├── userValidation.js      # Validation for user inputs
-│   │       ├── postValidation.js      # Validation for post inputs
-│   ├── /routes                        # Definitions of routes
-│   │   ├── ROUTES.md                  # Documentation for routes
-│   │   ├── /tests                     # Tests for routes
-│   │   ├── userRoutes.js              # Routes for user-related operations
-│   │   ├── postRoutes.js              # Routes for post-related operations
-│   │   └── adminRoutes.js             # Routes for admin-related operations
-│   ├── /services                      # Business logic and interactions with APIs
-│   │   ├── SERVICES.md                # Documentation for services
-│   │   ├── /tests                     # Tests for services
-│   │   ├── currencyRateService.js     # Service for fetching currency rates
-│   │   └── geoService.js              # Service for geographical data
-│   ├── /middlewares                   # Middleware for processing requests
-│   │   ├── MIDDLEWARES.md             # Documentation for middlewares
-│   │   ├── /tests                     # Tests for middlewares
-│   │   └── authMiddleware.js          # Middleware for authentication
-│   ├── /mailers                       # Mailers
-│   │   ├── MAILERS.md                 # Documentation for mailers
-│   │   ├── /tests                     # Tests for mailers
-│   │   ├── users/createMailer.js      # Mailer for user creation
-│   │   └── auth/registrationMailer.js # Mailer for user registration
-│   ├── /jobs                          # Background jobs
-│   │   ├── JOBS.md                    # Documentation for jobs
-│   │   ├── /tests                     # Tests for jobs
-│   │   └── currencyRateJob.js         # Job for updating currency rates
-│   ├── /utils                         # Utility functions and helpers
-│   │   ├── UTILS.md                   # Documentation for utilities
-│   │   ├── /tests                     # Tests for utilities
-│   │   └── dateUtils.js               # Utility for handling dates
-│   └── index.js                       # Entry point (server startup)
-├── /config                            # Configuration files
-│   └── CONFIG.md                      # Documentation for configuration
-├── /docs                              # Documentation
-│   ├── DOCS.md                        # Documentation overview
-│   ├── API.md                         # API documentation
-│   ├── README.md                      # Project overview and setup
-├── package.json                       # Project description and dependencies
-└── README.md                          # Main project documentation
+└── src
+    ├── index.ts                              # Entry point (server startup)
+    ├── types                                 # TypeScript types
+    │   └── __TYPES.md                        # Documentation for TypeScript types
+    ├── migrations                            # Database migrations
+    │   ├── __MIGRATIONS.md                   # Documentation for migrations
+    │   ├── 202501021230_addUsersTable.ts     # Migration to add users table
+    │   ├── 202501021235_addPostsTable.ts     # Migration to add posts table
+    │   ├── 202501021240_updateUserSchema.ts  # Migration to update user schema
+    │   └── EXECUTED_MIGRATIONS.ts            # Migration history
+    ├── routes                                # Route definitions
+    │   ├── __ROUTES.md                       # Documentation for routes
+    │   ├── __tests                           # Tests for routes
+    │   ├── adminRoutes.ts                    # Routes for admin-related operations
+    │   ├── postRoutes.ts                     # Routes for post-related operations
+    │   └── userRoutes.ts                     # Routes for user-related operations
+    ├── middlewares                           # Middleware for processing requests
+    │   ├── __MIDDLEWARES.md                  # Documentation for middlewares
+    │   ├── __tests                           # Tests for middlewares
+    │   └── authMiddleware.ts                 # Middleware for authentication
+    ├── actions                               # Logic for handling HTTP requests
+    │   ├── __ACTIONS.md                      # Documentation for actions
+    │   ├── __tests                           # Tests for actions
+    │   ├── posts                             # Post-specific actions
+    │   │   ├── createPostAction.ts           # Action for creating a post
+    │   │   ├── getPostAction.ts              # Action for retrieving a post
+    │   │   ├── updatePostAction.ts           # Action for updating a post
+    │   │   └── deletePostAction.ts           # Action for deleting a post
+    │   └── users                             # User-specific actions
+    │       ├── createUserAction.ts           # Action for creating a user
+    │       ├── getUserAction.ts              # Action for retrieving a user
+    │       ├── updateUserAction.ts           # Action for updating a user
+    │       └── deleteUserAction.ts           # Action for deleting a user
+    ├── paramsSchema                          # Schemas for parameter validation
+    │   ├── auth.ts                           # Schema for authentication parameters
+    │   ├── posts.ts                          # Schema for post parameters
+    │   └── users.ts                          # Schema for user parameters
+    ├── validations                           # Validation logic for data models
+    │   ├── __tests                           # Tests for validations
+    │   ├── postValidation.ts                 # Validation for post inputs
+    │   ├── userValidation.ts                 # Validation for user inputs
+    ├── dataAccess                            # Data access layer, includes repositories
+    │   ├── __DATA_ACCESS.md                  # Documentation for the data access layer
+    │   ├── authRepository.ts                 # Repository for auth data
+    │   ├── postRepository.ts                 # Repository for post data
+    │   └── userRepository.ts                 # Repository for user data
+    ├── jobs                                  # Background jobs
+    │   ├── __JOBS.md                         # Documentation for jobs
+    │   ├── __tests                           # Tests for jobs
+    │   └── currencyRateJob.ts                # Job for updating currency rates
+    ├── services                              # Business logic and external API interactions
+    │   ├── __SERVICES.md                     # Documentation for services
+    │   ├── __tests                           # Tests for services
+    │   ├── currencyRateService.ts            # Service for fetching currency rates
+    │   └── geoService.ts                     # Service for geographical data
+    ├── mailers                               # Mailers
+    │   ├── __MAILERS.md                      # Documentation for mailers
+    │   ├── __tests                           # Tests for mailers
+    │   ├── auth                              # Auth-related mailers
+    │   └── users                             # User-related mailers
+    └── utils                                 # Utility functions and helpers
+        ├── __UTILS.md                        # Documentation for utilities
+        ├── __tests                           # Tests for utilities
+        └── dateUtils.ts                      # Utility for handling dates
 ```
 
 ---
