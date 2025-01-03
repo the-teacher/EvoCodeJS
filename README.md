@@ -84,6 +84,12 @@ This project outlines the structure of the anticipated Node.js application along
 
 ---
 
+## Getting Started Docs
+
+1. [Entry Point](src/__ENTRY_POINT.md)
+2. [Routes](src/routes/__ROUTES.md)
+3. [Actions](src/actions/__ACTIONS.md)
+
 ### License
 
 [MIT](https://choosealicense.com/licenses/mit/)
